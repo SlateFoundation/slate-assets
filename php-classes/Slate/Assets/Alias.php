@@ -81,7 +81,7 @@ class Alias extends \Emergence\Activity\ActivityRecord
     public function saveDeltaActivity($wasPhantom = false, $wasDirty = false)
     {
         if ($wasPhantom) {
-            $Activity = Delta::publish($this, 'create', $GLOBALS['Session']->Person, $this->getData());
+            $Activity = Delta::publish($this, 'create', $this->getUserFromEnvironment(), $this->getData());
         } else if ($wasDirty) {
             $delta = [];
 
@@ -93,7 +93,7 @@ class Alias extends \Emergence\Activity\ActivityRecord
                     $delta[$this->Type]['keyName'] = $key;
                 }
             }
-            $Activity = Delta::publish($this, 'update', $GLOBALS['Session']->Person, $delta);
+            $Activity = Delta::publish($this, 'update', $this->getUserFromEnvironment(), $delta);
         }
     }
 }
