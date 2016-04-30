@@ -4,7 +4,7 @@ namespace Emergence\Activity;
 
 use ActiveRecord;
 
-abstract class Activity extends \ActiveRecord
+abstract class AbstractActivity extends \ActiveRecord
 {
     // ActiveRecord configuration
     public static $tableName = 'activity';
