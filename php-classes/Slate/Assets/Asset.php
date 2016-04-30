@@ -9,7 +9,7 @@ use Slate\Assets\Status;
 use Emergence\Locations\Location;
 use Emergence\People\Person;
 
-class Asset extends \ActivityRecord
+class Asset extends \Emergence\Activity\ActivityRecord
 {
     public static $aliasTypes = ['MfrSerial', 'MacAddress'];
 

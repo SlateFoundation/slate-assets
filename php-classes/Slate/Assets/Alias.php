@@ -2,9 +2,9 @@
 
 namespace Slate\Assets;
 
-use DeltaActivity;
+use Emergence\Activity\Delta;
 
-class Alias extends \ActivityRecord
+class Alias extends \Emergence\Activity\ActivityRecord
 {
     // ActiveRecord configuration
     public static $tableName = 'aliases';
@@ -81,7 +81,7 @@ class Alias extends \ActivityRecord
     public function saveDeltaActivity($wasPhantom = false, $wasDirty = false)
     {
         if ($wasPhantom) {
-            $Activity = DeltaActivity::publish($this, 'create', $GLOBALS['Session']->Person, $this->getData());
+            $Activity = Delta::publish($this, 'create', $GLOBALS['Session']->Person, $this->getData());
         } else if ($wasDirty) {
             $delta = [];
 
@@ -93,7 +93,7 @@ class Alias extends \ActivityRecord
                     $delta[$this->Type]['keyName'] = $key;
                 }
             }
-            $Activity = DeltaActivity::publish($this, 'update', $GLOBALS['Session']->Person, $delta);
+            $Activity = Delta::publish($this, 'update', $GLOBALS['Session']->Person, $delta);
         }
     }
 }

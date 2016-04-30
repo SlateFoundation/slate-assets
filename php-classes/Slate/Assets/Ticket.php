@@ -4,7 +4,7 @@ namespace Slate\Assets;
 
 use Slate\Assets\Asset;
 
-class Ticket extends \ActivityRecord
+class Ticket extends \Emergence\Activity\ActivityRecord
 {
 
     // ActiveRecord configuration
