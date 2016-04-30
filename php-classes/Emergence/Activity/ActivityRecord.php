@@ -20,7 +20,7 @@ abstract class ActivityRecord extends \ActiveRecord
     {
         $Activity = Delta::create([
             'Object' => $this,
-            'Actor' => $GLOBALS['Session']->Person,
+            'Actor' => $this->getUserFromEnvironment(),
             'Verb' => 'delete',
             'Data' => $this->getData(),
         ], true);
@@ -41,7 +41,7 @@ abstract class ActivityRecord extends \ActiveRecord
     public function saveDeltaActivity($wasPhantom = false, $wasDirty = false)
     {
         if ($wasPhantom) {
-            $Activity = Delta::publish($this, 'create', $GLOBALS['Session']->Person, $this->getData());
+            $Activity = Delta::publish($this, 'create', $this->getUserFromEnvironment(), $this->getData());
         } else if ($wasDirty) {
             $delta = array();
 
@@ -51,7 +51,7 @@ abstract class ActivityRecord extends \ActiveRecord
             }
 
             if (!empty($delta)) {
-                $Activity = Delta::publish($this, 'update', $GLOBALS['Session']->Person, $delta);
+                $Activity = Delta::publish($this, 'update', $this->getUserFromEnvironment(), $delta);
             }
         }
     }
