@@ -13,7 +13,7 @@ class Delta extends AbstractActivity
         //check if activity has a merge threshold
         if (static::$activityMergeHours) {
             $conditions = [
-                'ActorID' => $Actor->ID,
+                'ActorID' => $Actor ? $Actor->ID : null,
                 'ObjectID' => $Object->ID,
                 'ObjectClass' => $Object->Class,
                 'Verb' => $verb,
