@@ -38,7 +38,7 @@ Ext.define('Slate.assets.model.asset.Status', {
     {
         name: 'ParentID',
         type: 'integer',
-        useNull: true
+        allowNull: true
     },
     {
         name: 'Parent',

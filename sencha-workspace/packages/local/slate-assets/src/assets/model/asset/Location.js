@@ -11,6 +11,7 @@ Ext.define('Slate.assets.model.asset.Location', {
         name: 'text',
         type: 'string',
         persist: false,
+        depends: 'Title',
         convert: function(v, r) {
             return v || r.get('Title');
         }
@@ -18,6 +19,7 @@ Ext.define('Slate.assets.model.asset.Location', {
         name: 'leaf',
         type: 'boolean',
         persist: false,
+        depends: ['Left', 'Right'],
         convert: function(v, r) {
             if (typeof v == 'boolean') {
                 return v;

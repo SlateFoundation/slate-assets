@@ -13,7 +13,7 @@ Ext.define('Slate.assets.model.Location', {
         {
             name: "ID",
             type: "int",
-            useNull: true
+            allowNull: true
         },
         {
             name: "Class",
@@ -24,17 +24,17 @@ Ext.define('Slate.assets.model.Location', {
             name: "Created",
             type: "date",
             dateFormat: "timestamp",
-            useNull: true
+            allowNull: true
         },
         {
             name: "CreatorID",
             type: "int",
-            useNull: true
+            allowNull: true
         },
         {
             name: "RevisionID",
             type: "int",
-            useNull: true
+            allowNull: true
         },
         {
             name: "Title",
@@ -52,26 +52,27 @@ Ext.define('Slate.assets.model.Location', {
         {
             name: "Description",
             type: "string",
-            useNull: true
+            allow: true
         },
         {
             name: "ParentID",
             type: "int",
-            useNull: true
+            allowNull: true
         },
         {
             name: "Left",
             type: "int",
-            useNull: true
+            allowNull: true
         },
         {
             name: "Right",
             type: "int",
-            useNull: true
+            allowNull: true
         },{
             name: 'text',
             type: 'string',
             persist: false,
+            depends: 'Title',
             convert: function(v, r) {
                 return r.get('Title');
             }
@@ -79,8 +80,9 @@ Ext.define('Slate.assets.model.Location', {
             name: 'leaf',
             type: 'string',
             persist: false,
+            depends: ['Right', 'Left'],
             convert: function(v, r) {
-                return (r.raw.Left && r.raw.Right && (r.raw.Right - r.raw.Left == 1));
+                return (r.get('Left') && r.get('Right') && (r.get('Right') - r.get('Left') == 1));
             }
         }
     ],

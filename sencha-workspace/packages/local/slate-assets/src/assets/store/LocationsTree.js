@@ -2,7 +2,7 @@
 Ext.define('Slate.assets.store.LocationsTree', {
     extend: 'Ext.data.TreeStore',
 
-    model: 'Slate.assets.model.Location',
+    model: 'Slate.assets.model.asset.Location',
     parentIdProperty: 'ParentID',
 
     root: {
@@ -24,7 +24,7 @@ Ext.define('Slate.assets.store.LocationsTree', {
 
     onBeforeNodeExpand: function(node, callback, scope, args) {
         var me = this,
-            locationsStore = Ext.getStore('Locations'), rootNode, records = [],
+            locationsStore = Ext.getStore('assets.Locations'), rootNode, records = [],
             callbackArgs,
             _finishExpand = function() {
                 callbackArgs = [node.childNodes];

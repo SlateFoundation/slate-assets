@@ -21,12 +21,12 @@ Ext.define('Slate.assets.model.asset.TreeNode', {
         name: 'Created',
         type: 'date',
         dateFormat: 'timestamp',
-        useNull: true
+        allowNull: true
     },
     {
         name: 'CreatorID',
         type: 'integer',
-        useNull: true
+        allowNull: true
     },
     {
         name: 'Title',
@@ -39,23 +39,23 @@ Ext.define('Slate.assets.model.asset.TreeNode', {
     {
         name: 'ParentID',
         type: 'integer',
-        useNull: true
+        allowNull: true
     },
     {
         name: 'Parent',
-        useNull: true
+        allowNull: true
     },
     {
         name: 'Left',
         type: 'integer',
         persist: false,
-        useNull: true
+        allowNull: true
     },
     {
         name: 'Right',
         type: 'integer',
         persist: false,
-        useNull: true
+        allowNull: true
     },
     {
         name: 'text',
@@ -69,6 +69,7 @@ Ext.define('Slate.assets.model.asset.TreeNode', {
         name: 'leaf',
         type: 'boolean',
         persist: false,
+        depends: ['Right', 'Left'],
         convert: function(v, r) {
 
             if (typeof v == 'boolean') {
@@ -95,38 +96,38 @@ Ext.define('Slate.assets.model.asset.TreeNode', {
         }
     },{
         name: 'nodeParam',
-        useNull: true,
+        allowNull: true,
         persist: false
     },{
         name: 'queryParam',
         convert: function(v, r) {
             return v || r.getQueryParam();
         },
-        useNull: true,
+        allowNull: true,
         persist: false
     },{
         name: 'nodeField',
-        useNull: true,
+        allowNull: true,
         persist: false
     },{
         name: 'url',
-        useNull: true,
+        allowNull: true,
         persist: false,
         convert: function(v, r) {
             return v || r.getUrl();
         }
     },{
         name: 'rootHash',
-        useNull: true,
+        allowNull: true,
         persist: false
     },{
         name: 'assetsCount',
-        useNull: true,
+        allowNull: true,
         type: 'integer',
         persist: false
     },{
         name: 'ticketsCount',
-        useNull: true,
+        allowNull: true,
         type: 'integer',
         persist: false
     },
@@ -261,12 +262,7 @@ Ext.define('Slate.assets.model.asset.TreeNode', {
                 node = operation.node,
                 url = node.get('url'),
                 request;
-            console.log('onBuildRequest', operation, node);
-            // operation._recordCreator = function(data, type, readOptions) {
-            //     var record = me.getModel().create(data);
-            //     debugger;
-            //     return record;
-            // };
+
             request = me.superclass.buildRequest.call(me, operation);
             if (!url) {
                 return false;

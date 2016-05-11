@@ -33,10 +33,8 @@ Ext.define('Slate.assets.controller.Assets', {
         'assets/search/:query': {
             action: 'showResults',
             conditions: {
-                // ':query' : "([%a-zA-Z0-9\-\_\s,\:])+"
                 ':query': '([^/]+)'
             }
-            // matcherRegex: /^assets\/search\/([%a-zA-Z0-9\-\_\s,\:]+)$/
         },
         'assets/create': {
             action: 'createNewAsset'
