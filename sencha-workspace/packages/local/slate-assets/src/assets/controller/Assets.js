@@ -370,7 +370,7 @@ Ext.define('Slate.assets.controller.Assets', {
         }
 
         Ext.Ajax.request({
-            url: '/assets/'+asset.getId()+'/activity',
+            url: SlateAdmin.API.buildUrl('/assets/'+asset.getId()+'/activity'),
             method: 'GET',
             scope: me,
             params: {
@@ -560,7 +560,7 @@ Ext.define('Slate.assets.controller.Assets', {
 
             mediaFiles = dataview.store.data.items,
             keepFiles = [],
-            _onActivityCreated;
+            activityUrl, _onActivityCreated;
 
         _onActivityCreated = function(event) {
             var response = Ext.decode(event.currentTarget.response),
@@ -592,8 +592,9 @@ Ext.define('Slate.assets.controller.Assets', {
             me.updateSelectedAssetActivity();
 
         };
-
-        xhr.open('POST','/assets/'+asset.getId()+'/activity/create?format=json');
+        
+        activityUrl = '/assets/' + asset.getId() + '/activity/create?format=json';
+        xhr.open('POST', SlateAdmin.API.buildUrl(activityUrl));
         xhr.onload = Ext.bind(_onActivityCreated, me);
 
         Ext.each(mediaFiles, function(mediaFile, i) {

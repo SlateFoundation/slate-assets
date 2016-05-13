@@ -824,7 +824,7 @@ Ext.define('Slate.assets.controller.Tickets', {
 
         };
 
-        xhr.open('POST','/tickets/'+ticket.getId()+'/activity/create?format=json');
+        xhr.open('POST', SlateAdmin.API.buildUrl('/tickets/'+ticket.getId()+'/activity/create?format=json'));
         xhr.onload = Ext.bind(_onActivityCreated, me);
 
         Ext.each(mediaFiles, function(mediaFile, i) {
@@ -847,7 +847,7 @@ Ext.define('Slate.assets.controller.Tickets', {
         }
 
         Ext.Ajax.request({
-            url: '/tickets/'+ticket.getId()+'/activity',
+            url: SlateAdmin.API.buildUrl('/tickets/'+ticket.getId()+'/activity'),
             method: 'GET',
             scope: me,
             params: {
