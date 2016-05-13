@@ -21,34 +21,33 @@ Ext.define('Slate.assets.controller.Assets', {
     ],
 
     routes: {
-        // 'assets': 'showAssets',
-        'assets/search/:query/:assetId': {
-            action: 'showResults',
-            conditions: {
-                ':query': '[^/]+',
-                ':assetId': '([^/]+)' //[s^/?]+'
-            }
-        },
-        // 'assets/search/:query': {
-        //     action: 'showResults',
-        //     conditions: {
-        //         ':query': '([^/]+)'
-        //     }
-        // },
-        
+        'assets': 'showAssets',
+        'assets/all': 'showAllAssets',
         'assets/create': {
             action: 'createNewAsset'
         },
-
-        'assets/all': 'showAllAssets',
         
         'assets/:assetId': {
             action: 'showAsset',
             conditions: {
                 ':assetId' : '(all[^\d]+?)'
             }
-        }
+        },
+        'assets/lookup/:asset': 'showAsset',
         
+        'assets/search/:query': {
+            action: 'showResults',
+            conditions: {
+                ':query': '([^/]+)'
+            }
+        },
+        'assets/search/:query/:assetId': {
+            action: 'showResults',
+            conditions: {
+                ':query': '[^/]+',
+                ':assetId': '([\\d]+)'
+            }
+        }
     },
 
     refs: [{
