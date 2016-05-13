@@ -180,24 +180,23 @@ Ext.define('Slate.assets.view.assets.details.Form', {
         assignee = asset.get('Assignee');
 
         if (assignee) {
+            
             assigneeCombo = me.down('#assigneeClassCombo');
             assigneeIdCombo = me.down('#assigneeIdCombo');
-
+            //set assignee class combo first. (note: changing assignee class will reset assignee id)
+            assigneeCombo.setValue(me.getRootModelFromValue(asset.get('AssigneeClass')));
             // assignee = Ext.ModelMgr.create(assignee, me.getModelFromValue(assignee.Class));
             assigneeModel = me.getModelFromValue(assignee.Class, true);
             assignee = assigneeModel.create(assignee);
-
+            
             if ((assigneeIdCombo.getStore().isLoaded() === false && assigneeIdCombo.getStore().isLoading() === false) || !assigneeIdCombo.getStore().getById(assignee.getId())) {
-                assigneeIdCombo.getStore().insert(0, assignee);
+                assigneeIdCombo.getStore().load(function() {
+                    assigneeIdCombo.setValue(assignee);
+                });
+            } else {
+                assigneeIdCombo.setValue(assignee);
             }
-
-            assigneeIdCombo.setValue(assignee);
-            assigneeIdCombo.initValue();
-            assigneeIdCombo.wasDirty = false;
-            //add to array of fields to be skipped by manual fn that sets fields as clean.
             skipCmps.push(assigneeIdCombo);
-
-            assigneeCombo.setValue(me.getRootModelFromValue(asset.get('AssigneeClass')));
         }
 
 
@@ -210,18 +209,20 @@ Ext.define('Slate.assets.view.assets.details.Form', {
 
             ownerClass = me.getModelFromValue(owner.Class, true);
             owner = ownerClass.create(owner);
+            
+            //set owner class combo first. (note: changing owner class will reset owner id)
+            ownerCombo.setValue(me.getRootModelFromValue(asset.get('OwnerClass')));
 
             // owner = Ext.ModelMgr.create(owner, me.getModelFromValue(owner.Class));
             if ((ownerIdCombo.getStore().isLoaded() === false && ownerIdCombo.getStore().isLoading() === false) || !ownerIdCombo.getStore().getById(owner.getId())) {
-                ownerIdCombo.getStore().insert(0, owner);
+                ownerIdCombo.getStore().load(function() {
+                    ownerIdCombo.setValue(owner);
+                });
+            } else {
+                ownerIdCombo.setValue(owner)
             }
 
-            ownerIdCombo.setValue(owner);
-            ownerIdCombo.initValue();
-            ownerIdCombo.wasDirty = false;
-
             skipCmps.push(ownerIdCombo);
-            ownerCombo.setValue(me.getRootModelFromValue(asset.get('OwnerClass')));
         }
 
         me.loadRecord(asset);
