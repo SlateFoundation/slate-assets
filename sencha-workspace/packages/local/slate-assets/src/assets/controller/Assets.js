@@ -21,31 +21,34 @@ Ext.define('Slate.assets.controller.Assets', {
     ],
 
     routes: {
-        'assets': 'showAssets',
-        // 'assets/all': 'showAllAssets',
+        // 'assets': 'showAssets',
         'assets/search/:query/:assetId': {
             action: 'showResults',
             conditions: {
                 ':query': '[^/]+',
-                ':assetId': '[^/?]+'
+                ':assetId': '([^/]+)' //[s^/?]+'
             }
         },
-        'assets/search/:query': {
-            action: 'showResults',
-            conditions: {
-                ':query': '([^/]+)'
-            }
-        },
+        // 'assets/search/:query': {
+        //     action: 'showResults',
+        //     conditions: {
+        //         ':query': '([^/]+)'
+        //     }
+        // },
+        
         'assets/create': {
             action: 'createNewAsset'
         },
 
+        'assets/all': 'showAllAssets',
+        
         'assets/:assetId': {
-            action: 'showAsset'
-            // conditions: {
-            //     ':assetId' : '[^\\/\d]+'
-            // }
+            action: 'showAsset',
+            conditions: {
+                ':assetId' : '(all[^\d]+?)'
+            }
         }
+        
     },
 
     refs: [{
@@ -245,6 +248,7 @@ Ext.define('Slate.assets.controller.Assets', {
             _onAssetNotFound = function() {
                 ExtHistory.resumeState(false);
 //                Ext.resumeLayouts(true);
+                debugger;
                 return Ext.Msg.alert('Error', 'The asset you requested could not be found. Please try again', function() {
                    ExtHistory.pushState('assets');
                 });
@@ -254,7 +258,7 @@ Ext.define('Slate.assets.controller.Assets', {
 //                Ext.resumeLayouts(true);
                 ExtHistory.pushState('assets/'+rec.getId());
             };
-
+        
         ExtHistory.suspendState();
         Ext.suspendLayouts();
 
@@ -1173,6 +1177,7 @@ Ext.define('Slate.assets.controller.Assets', {
             if (assetRecord) {
                 _finishSelectAsset();
             } else {
+                debugger;
                 store.load({
                     url: '/assets/'+asset,
                     scope: me,
@@ -1239,7 +1244,7 @@ Ext.define('Slate.assets.controller.Assets', {
         }, 500, me);
 
         if (execute) {
-            Ext.util.History.add(query ? [rootHash, 'search', query] : [rootHash]);
+            Ext.util.History.add(query ? [rootHash, 'search', query] : [rootHash, 'all']);
         }
     },
 
