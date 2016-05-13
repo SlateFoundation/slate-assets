@@ -821,8 +821,14 @@ Ext.define('Slate.assets.controller.Assets', {
 
             //set asset custom fields
             if ( inputValue && (fieldValue != inputValue.trim())) {
-                if (asset.modified.Data === undefined) {
-                    asset.modified.Data = assetData;
+                if (asset.isModified('Data') === false) {
+                    if (asset.isModified()) {
+                        asset.modified.Data = assetData;
+                    } else {
+                        asset.modified = {
+                            Data: assetData
+                        };
+                    }
                 }
 
                 newAssetData[fieldName] = inputValue.trim();
@@ -855,9 +861,16 @@ Ext.define('Slate.assets.controller.Assets', {
             if(!valueFieldValue) {
                 return;
             }
+            
             //manually set field modified to persist to server.
-            if (asset.modified.Data === undefined) {
-                asset.modified.Data = assetData;
+            if (!asset.isModified('Data')) {
+                if (asset.isModified()) {
+                    asset.modified.Data = assetData;
+                } else {
+                    asset.modified = {
+                        Data: assetData
+                    };
+                }
             }
 
             assetData[keyFieldValue.trim()] = valueFieldValue.trim();
@@ -1052,7 +1065,7 @@ Ext.define('Slate.assets.controller.Assets', {
                     queryParam: 'q',
                     displayField: 'name',
                     store: {
-                        model: 'SlateAdmin.model.asset.TemplateDataField',
+                        model: 'Slate.assets.model.asset.TemplateDataField',
                         filters: [
                             function(item) {
                                 return (extraInfoFieldset.down('#data-'+item.get('name')+'-combo') ) ? false : true;
@@ -1176,7 +1189,6 @@ Ext.define('Slate.assets.controller.Assets', {
             if (assetRecord) {
                 _finishSelectAsset();
             } else {
-                debugger;
                 store.load({
                     url: '/assets/'+asset,
                     scope: me,
