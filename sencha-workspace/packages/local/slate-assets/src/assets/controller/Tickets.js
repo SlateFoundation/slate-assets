@@ -17,26 +17,28 @@ Ext.define('Slate.assets.controller.Tickets', {
     ],
 
     routes: {
-
         'tickets/search/:query/:ticketId': {
             action: 'showResults',
             conditions: {
                 ':query': '([^/]+)',
-                ':ticketId': '(\d)+'
+                 ':ticketId': '([\\d]+)'
             }
         },
+        
         'tickets/search/:query': {
             action: 'showResults',
             conditions: {
                 ':query': '([^/]+)'
             }
         },
-        'tickets': 'showTickets',
-        'tickets/all': 'showAllTickets',
         'tickets/lookup/:ticket': 'showTicket',
         'tickets/create': {
             action: 'createNewTicket'
-        }
+        },
+        
+        'tickets': 'showTickets',
+        'tickets/all': 'showAllTickets'
+        
     },
 
     refs: [{
