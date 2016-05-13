@@ -902,7 +902,11 @@ Ext.define('Slate.assets.controller.Assets', {
 
             if (contextCombo && contextIdCombo) {
                 cls = contextCombo.getValue();
-                id = contextIdCombo.getValue();
+                if (!contextIdCombo.getValue() && contextIdCombo.getSelection()) {
+                    id = contextIdCombo.getSelection().getId();
+                } else {                    
+                    id = contextIdCombo.getValue();                    
+                }
 
                 clsField = contextComboField + 'Class';
                 idField = contextComboField + 'ID';
