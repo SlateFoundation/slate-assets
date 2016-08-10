@@ -89,15 +89,8 @@ Ext.define('Slate.assets.view.tickets.details.Asset',{
 	            model: 'Slate.assets.model.Asset',
 
 	            proxy: {
-	                type: 'ajax',
-	                url: '/assets/search',
-	                extraParams: {
-	                    format: 'json'
-	                },
-	                reader: {
-	                    type: 'json',
-	                    root: 'data'
-	                }
+	                type: 'slaterecords',
+	                url: '/assets/search'
 	            }
 	        },
 
