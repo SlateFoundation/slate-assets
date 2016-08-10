@@ -12,6 +12,10 @@ Ext.define('Slate.assets.controller.Assets', {
         'assets.details.Form'
     ],
 
+    models: [
+        'Asset'
+    ],
+
     stores: [
         'Assets',
         'assets.Locations',
@@ -328,7 +332,7 @@ Ext.define('Slate.assets.controller.Assets', {
 
     createNewAsset: function() {
         var me = this,
-            asset = Ext.ModelMgr.create({}, 'SlateAdmin.model.Asset');
+            asset = me.getAssetModel().create();
 
         me.showAssets();
 
@@ -1144,7 +1148,7 @@ Ext.define('Slate.assets.controller.Assets', {
 
     onAddNewAsset: function(btn) {
         var me = this,
-            asset = Ext.ModelMgr.create({}, 'SlateAdmin.model.Asset');
+            asset = me.getAssetModel().create();
 
         if(me.getDetailsForm().isDirty()) {
             Ext.Msg.confirm('Cancel Edit?', 'Are you sure you want to cancel editing this asset?', function(answer) {
