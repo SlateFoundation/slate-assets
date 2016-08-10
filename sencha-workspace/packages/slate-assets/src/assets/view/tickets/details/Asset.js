@@ -190,10 +190,9 @@ Ext.define('Slate.assets.view.tickets.details.Asset',{
         }
     },
 
-    onAssetSelect: function(combo, records) {
+    onAssetSelect: function(combo, asset) {
         var me = this,
-            ticket = me.getTicket(),
-            asset = records[0];
+            ticket = me.getTicket();
 
         ticket.set('AssetID', asset.get('ID'));
         me.setLoading({
