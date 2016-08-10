@@ -34,7 +34,7 @@ Ext.define('Slate.assets.controller.Assets', {
         'assets/:assetId': {
             action: 'showAsset',
             conditions: {
-                ':assetId' : '(all[^\d]+?)'
+                ':assetId' : '([^/]+)'
             }
         },
         'assets/lookup/:asset': 'showAsset',
