@@ -376,6 +376,7 @@ Ext.define('Slate.assets.controller.Assets', {
         Ext.Ajax.request({
             url: SlateAdmin.API.buildUrl('/assets/'+asset.getId()+'/activity'),
             method: 'GET',
+            withCredentials: true,
             scope: me,
             params: {
                 format: 'json',
