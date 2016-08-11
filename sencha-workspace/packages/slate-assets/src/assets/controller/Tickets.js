@@ -290,8 +290,7 @@ Ext.define('Slate.assets.controller.Tickets', {
             form = me.getDetailsForm(),
             ticket = form.getRecord(),
             ticketData = ticket.getData(),
-            wasPhantom = ticket.phantom,
-            assigneeChanged, statusChanged;
+            wasPhantom = ticket.phantom;
 
         //loadmask
         form.setLoading({
@@ -299,9 +298,6 @@ Ext.define('Slate.assets.controller.Tickets', {
         });
         //update record from form
         form.updateRecord();
-
-        assigneeChanged = ticket.modified.AssigneeID !== undefined;
-        statusChanged = ticket.modified.StatusID !== undefined;
 
         ticket.save({
             callback: function(record, op, succ) {
@@ -320,8 +316,6 @@ Ext.define('Slate.assets.controller.Tickets', {
                         Ext.Function.defer(function() {
                             form.setLoading(false);
                             me.doSearch(true, function() {
-                                if (!assigneeChanged && !statusChanged) {
-                                }
                                 me.selectTicket(record);
                             });
                         }, 250, me);
