@@ -373,13 +373,9 @@ Ext.define('Slate.assets.controller.Assets', {
             return;
         }
 
-        Ext.Ajax.request({
-            url: SlateAdmin.API.buildUrl('/assets/'+asset.getId()+'/activity'),
-            method: 'GET',
-            withCredentials: true,
-            scope: me,
+        Slate.API.request({
+            url: '/assets/'+asset.getId()+'/activity',
             params: {
-                format: 'json',
                 'include[]': [
                     'Actor',
                     'Media',
@@ -388,10 +384,7 @@ Ext.define('Slate.assets.controller.Assets', {
             },
             success: function(response, opts) {
                 var responseData = Ext.decode(response.responseText);
-                asset.beginEdit();
-                asset.set('Stories', responseData.data);
-                asset.endEdit();
-                asset.commit();
+                asset.set('Stories', responseData.data, { commit: true });
                 return manager.updateSelectedAsset(asset);
             }
         });
