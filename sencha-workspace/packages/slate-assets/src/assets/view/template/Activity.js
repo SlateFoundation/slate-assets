@@ -70,8 +70,8 @@ Ext.define('Slate.assets.view.template.Activity', {
                                     '<tpl if="Media">',
                                         '<ul class="upload-previews">',
                                             '<tpl for="Media">',
-                                                '<li class="activity-note-photo upload-preview" style="background-image: url(/media/open/{[values.ID]})">',
-                                                    '<a class="preview-photo preview-button fa fa-eye fa-2x" title="{[values.Caption]}" href="/media/open/{[values.ID]}" target="_blank">',
+                                                '<li class="activity-note-photo upload-preview" style="background-image: url({[this.buildMediaUrl(values.ID)]})">',
+                                                    '<a class="preview-photo preview-button fa fa-eye fa-2x" title="{[values.Caption]}" href="{[this.buildMediaUrl(values.ID)]}" target="_blank">',
                                                     '</a>',
                                                 '</li>',
                                             '</tpl>',
@@ -84,7 +84,11 @@ Ext.define('Slate.assets.view.template.Activity', {
 
 	                '</article>',
 	            '</tpl>',
-	        '</div>'
+	        '</div>', {
+                buildMediaUrl: function(id) {
+                    return Slate.API.buildUrl('/media/open/' + id);
+                }
+            }
 	    ];
 
         me.callParent(html);

@@ -828,7 +828,7 @@ Ext.define('Slate.assets.controller.Tickets', {
         xhr.onload = Ext.bind(_onActivityCreated, me);
 
         Ext.each(mediaFiles, function(mediaFile, i) {
-            formData.append('mediaUpload['+i+']', mediaFile.raw.file);
+            formData.append('mediaUpload['+i+']', mediaFile.get('file'));
         }, me);
 
         formData.append('Note', note);

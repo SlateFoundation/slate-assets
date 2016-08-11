@@ -161,7 +161,6 @@ Ext.define('Slate.assets.view.AbstractActivity', {
             }, '.upload-previews.activity-note > li.upload-preview a.preview-button', true);
         } else {
             error = record ? record.get('error') : 'There is an unknown error with this file.';
-            me.imagesToolTip.setRecord(record);
             me.imagesToolTip.show();
         }
     },
@@ -179,13 +178,13 @@ Ext.define('Slate.assets.view.AbstractActivity', {
         var me = this,
             i = 0;
 
-        if (event && event.currentTarget && event.currentTarget.files && event.currentTarget.files.length) {
-            for (; i < event.currentTarget.files.length; i++) {
-                me.showFilePreview(event.currentTarget.files[i]);
+        if (event && event.srcElement && event.srcElement.files && event.srcElement.files.length) {
+            for (; i < event.srcElement.files.length; i++) {
+                me.showFilePreview(event.srcElement.files[i]);
             }
 
             //reset file field value
-            event.currentTarget.value = '';
+            event.srcElement.value = '';
         }
     },
 
@@ -202,6 +201,7 @@ Ext.define('Slate.assets.view.AbstractActivity', {
             ],
             pendingPhoto = {
                 loading: true,
+                error: false,
                 file: file
             };
 
@@ -210,6 +210,7 @@ Ext.define('Slate.assets.view.AbstractActivity', {
         reader.onload = function(readerEvent) {
             newPhotos[0].set({
                 loading: false,
+                error: false,
                 previewUrl: readerEvent.target.result,
                 href: URL.createObjectURL(file),
                 filename: file.name
@@ -275,6 +276,7 @@ Ext.define('Slate.assets.view.AbstractActivity', {
                     },
                     items: [{
                         xtype: 'filefield',
+                        isFileUpload: true,
                         buttonOnly: true,
                         buttonConfig: {
                             text: 'Attach&hellip;',
