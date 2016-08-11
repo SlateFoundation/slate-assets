@@ -51,7 +51,6 @@ Ext.define('Slate.assets.view.AbstractActivity', {
                 listeners: {
                     // Change content dynamically depending on which element triggered the show.
                     beforeshow: function updateTipBody(tip) {
-    //                        debugger;
                         if (view.getRecord(tip.triggerElement) && view.getRecord(tip.triggerElement).get('error')) {
                             tip.update(view.getRecord(tip.triggerElement).get('error'));
                         } else {
