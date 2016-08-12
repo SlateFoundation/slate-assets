@@ -34,7 +34,7 @@ Ext.define('Slate.assets.controller.Assets', {
         'assets/:assetId': {
             action: 'showAsset',
             conditions: {
-                ':assetId' : '([^/]+)'
+                ':assetId' : '([\\d]+)'
             }
         },
         'assets/lookup/:asset': 'showAsset',
@@ -934,6 +934,7 @@ Ext.define('Slate.assets.controller.Assets', {
 
                     if(wasPhantom) {
                         form.setLoading(false);
+                        me.getGrid().setLoading(false);
                         url.push('assets', record.get('ID'));
                         Ext.History.add(url, false);
                     } else {
