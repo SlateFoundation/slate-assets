@@ -1344,7 +1344,6 @@ Ext.define('Slate.assets.controller.Assets', {
 
     onAssetsTicketGridChange: function() {
         var me = this;
-//        debugger;
         me.updateSelectedAssetActivity();
     }
 
