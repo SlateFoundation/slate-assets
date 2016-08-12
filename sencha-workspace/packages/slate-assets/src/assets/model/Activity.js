@@ -115,7 +115,7 @@ Ext.define('Slate.assets.model.Activity', {
         convert: function(v, r) {
             if (!v) {
                 if (r.get('Actor') && r.get('Actor').PrimaryPhotoID) {
-                    v = '//' + document.location.host + '/thumbnail/'+r.get('Actor').PrimaryPhotoID+'/72x72/cropped';
+                    v = Slate.API.buildUrl('/thumbnail/'+r.get('Actor').PrimaryPhotoID+'/72x72/cropped');
                 } else {
                     v = '//fillmurray.com/72/72';
                 }
