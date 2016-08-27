@@ -7,6 +7,7 @@ Git::$repositories['slate-assets'] = [
     'trees' => [
         'php-classes/Slate/Assets',
         'php-classes/Emergence/Activity',
-        'php-config/Git.config.d/slate-assets.php'
+        'php-config/Git.config.d/slate-assets.php',
+        'php-config/Slate/UI/Tools.config.d/assets.php'
     ]
 ];
