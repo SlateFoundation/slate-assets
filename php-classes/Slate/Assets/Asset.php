@@ -213,7 +213,7 @@ class Asset extends \Emergence\Activity\ActivityRecord
 
         if (is_array($this->Aliases)) {
             foreach ($this->Aliases AS $alias) {
-                if ($alias->Type == $name) {
+                if ($alias->Type == 'MfrSerial') {
                     $serialAlias = $alias;
                     break;
                 }
