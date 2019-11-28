@@ -8,6 +8,7 @@ pkg = "slate-assets"
 root = "sencha-workspace"
 files = [
     "packages/slate-assets/**",
+    "packages/jarvus-ext-lightbox/**",
     "ext/**",
     "workspace.json",
 ]
