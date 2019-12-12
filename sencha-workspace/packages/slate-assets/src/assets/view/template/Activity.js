@@ -1,7 +1,7 @@
 Ext.define('Slate.assets.view.template.Activity', {
     extend: 'Ext.XTemplate',
     requires: [
-        'Jarvus.LightBox'
+        'Jarvus.lightbox.Global'
     ],
     constructor: function(config) {
         var me = this,
@@ -93,6 +93,6 @@ Ext.define('Slate.assets.view.template.Activity', {
 
         me.callParent(html);
 
-        Jarvus.LightBox.register('.preview-photo');
+        Jarvus.lightbox.Global.register('.preview-photo');
     }
 });

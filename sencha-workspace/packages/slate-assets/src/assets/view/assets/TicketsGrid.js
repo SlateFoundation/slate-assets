@@ -86,12 +86,11 @@ Ext.define('Slate.assets.view.assets.TicketsGrid', {
 
     selType: 'rowmodel',
 
-    plugins: [
-        Ext.create('Ext.grid.plugin.RowEditing', {
-            clicksToEdit: 2,
-            pluginId: 'ticketeditor'
-        })
-    ],
+    plugins: [{
+        ptype: 'rowediting',
+        clicksToEdit: 2,
+        pluginId: 'ticketeditor'
+    }],
 
 //    store: new Ext.data.SimpleStore(),
     emptyText: 'No tickets yet.',

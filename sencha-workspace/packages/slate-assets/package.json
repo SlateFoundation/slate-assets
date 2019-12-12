@@ -8,7 +8,8 @@
         "toolkit": "classic",
         "theme": "theme-neptune",
         "requires": [
-            "jarvus-lightbox"
+            "jarvus-lightbox",
+            "jarvus-ext-searchfield"
         ],
         "classpath": [
             "${package.dir}/src"
