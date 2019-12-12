@@ -36,7 +36,7 @@ Ext.define('Slate.assets.view.AbstractActivity', {
             view.el.on('click', me.onRemovePhotoBtnClick, me, {delegate: 'a.remove-button'});
             view.el.on('click', function(evt) {
                 evt.preventDefault();
-//                Jarvus.LightBox.open(evt.currentTarget);
+//                Jarvus.lightbox.Global.open(evt.currentTarget);
             }, me, {delegate: 'a.preview-button'})
 
             me.imagesToolTip = Ext.create('Ext.tip.ToolTip', {
@@ -154,7 +154,7 @@ Ext.define('Slate.assets.view.AbstractActivity', {
         var me = this,
             url;
         if (record && record.get('file') && !record.get('error')) {
-            Jarvus.LightBox.open({
+            Jarvus.lightbox.Global.open({
                 href: record.get('href'),
                 title: record.get('filename')
             }, '.upload-previews.activity-note > li.upload-preview a.preview-button', true);
@@ -295,7 +295,9 @@ Ext.define('Slate.assets.view.AbstractActivity', {
             },{
                 xtype: 'component',
                 itemId: 'activityCmp',
-                tpl: Ext.create('Slate.assets.view.template.Activity')
+                tpl: {
+                    xclass: 'Slate.assets.view.template.Activity'
+                }
             }];
 
             return defaultItems;

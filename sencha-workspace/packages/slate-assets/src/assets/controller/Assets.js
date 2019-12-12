@@ -30,7 +30,7 @@ Ext.define('Slate.assets.controller.Assets', {
         'assets/create': {
             action: 'createNewAsset'
         },
-        
+
         'assets/:assetId': {
             action: 'showAsset',
             conditions: {
@@ -38,7 +38,7 @@ Ext.define('Slate.assets.controller.Assets', {
             }
         },
         'assets/lookup/:asset': 'showAsset',
-        
+
         'assets/search/:query': {
             action: 'showResults',
             conditions: {
@@ -251,7 +251,6 @@ Ext.define('Slate.assets.controller.Assets', {
             _onAssetNotFound = function() {
                 ExtHistory.resumeState(false);
 //                Ext.resumeLayouts(true);
-                debugger;
                 return Ext.Msg.alert('Error', 'The asset you requested could not be found. Please try again', function() {
                    ExtHistory.pushState('assets');
                 });
@@ -261,7 +260,7 @@ Ext.define('Slate.assets.controller.Assets', {
 //                Ext.resumeLayouts(true);
                 ExtHistory.pushState('assets/'+rec.getId());
             };
-        
+
         ExtHistory.suspendState();
         Ext.suspendLayouts();
 
@@ -590,7 +589,7 @@ Ext.define('Slate.assets.controller.Assets', {
             me.updateSelectedAssetActivity();
 
         };
-        
+
         activityUrl = '/assets/' + asset.getId() + '/activity/create?format=json';
         xhr.open('POST', SlateAdmin.API.buildUrl(activityUrl));
         xhr.onload = Ext.bind(_onActivityCreated, me);
@@ -860,7 +859,7 @@ Ext.define('Slate.assets.controller.Assets', {
             if(!valueFieldValue) {
                 return;
             }
-            
+
             //manually set field modified to persist to server.
             if (!asset.isModified('Data')) {
                 if (asset.isModified()) {
@@ -902,8 +901,8 @@ Ext.define('Slate.assets.controller.Assets', {
                 cls = contextCombo.getValue();
                 if (!contextIdCombo.getValue() && contextIdCombo.getSelection()) {
                     id = contextIdCombo.getSelection().getId();
-                } else {                    
-                    id = contextIdCombo.getValue();                    
+                } else {
+                    id = contextIdCombo.getValue();
                 }
 
                 clsField = contextComboField + 'Class';

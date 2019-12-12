@@ -1,0 +1,9 @@
+[holomapping]
+files = [
+    # pull everything but root files
+    "*/**",
+
+    # exclude sencha workspace and lens, a separate mapping will inject builds instead
+    "!.holo/",
+    "!sencha-workspace/"
+]

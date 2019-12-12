@@ -67,7 +67,7 @@ Ext.define('Slate.assets.store.assets.TreeNodes', {
                 hideCount: true,
 
                 CustomHandle: 'ticket-assignees',
-                Class: '\Slate\\Assets\\Ticket',
+                Class: 'Slate\\Assets\\Ticket',
                 ID: 'assignees',
                 url: '/tickets/assignees',
                 nodeField: 'Assignee',

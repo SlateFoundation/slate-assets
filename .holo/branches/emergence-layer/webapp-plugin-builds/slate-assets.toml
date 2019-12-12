@@ -1,0 +1,7 @@
+[holomapping]
+holosource = "=>emergence-site"
+root = "webapp-plugin-builds/slate-assets"
+files = [
+    "**/*.js",
+    "**/*.css"
+]

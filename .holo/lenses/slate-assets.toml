@@ -1,0 +1,21 @@
+[hololens]
+package = "holo/lens-sencha-package"
+
+[hololens.sencha]
+workspace = "sencha-workspace"
+pkg = "slate-assets"
+
+[hololens.input]
+files = [
+    "sencha-workspace/packages/slate-assets/**",
+    "sencha-workspace/packages/jarvus-lightbox/**",
+    "sencha-workspace/packages/jarvus-ext-searchfield/**",
+    "sencha-workspace/ext/**",
+    "sencha-workspace/workspace.json",
+    "site-root/sass/**/_variables.scss",
+    "site-root/sass/**/_variables-*.scss"
+]
+
+[hololens.output]
+root = "webapp-plugin-builds/slate-assets"
+merge = "replace"
