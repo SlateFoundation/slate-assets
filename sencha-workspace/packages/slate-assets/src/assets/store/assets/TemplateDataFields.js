@@ -11,7 +11,6 @@ Ext.define('Slate.assets.store.assets.TemplateDataFields', {
 
 //    constructor: function() {
 //        var me = this;
-//        debugger;
 //        me.addEvents(['beforeadd']);
 //
 //        me.callParent(arguments);

@@ -31,7 +31,6 @@ Ext.define('Slate.assets.view.assets.TicketsGrid', {
             grid.getSelectionModel().select(0);
 
             rowEditor.startEdit(0);
-//            debugger;
         }
     }],
 

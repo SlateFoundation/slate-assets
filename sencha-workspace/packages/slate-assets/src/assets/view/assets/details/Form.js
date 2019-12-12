@@ -180,7 +180,7 @@ Ext.define('Slate.assets.view.assets.details.Form', {
         assignee = asset.get('Assignee');
 
         if (assignee) {
-            
+
             assigneeCombo = me.down('#assigneeClassCombo');
             assigneeIdCombo = me.down('#assigneeIdCombo');
             //set assignee class combo first. (note: changing assignee class will reset assignee id)
@@ -188,7 +188,7 @@ Ext.define('Slate.assets.view.assets.details.Form', {
             // assignee = Ext.ModelMgr.create(assignee, me.getModelFromValue(assignee.Class));
             assigneeModel = me.getModelFromValue(assignee.Class, true);
             assignee = assigneeModel.create(assignee);
-            
+
             if ((assigneeIdCombo.getStore().isLoaded() === false && assigneeIdCombo.getStore().isLoading() === false) || !assigneeIdCombo.getStore().getById(assignee.getId())) {
                 assigneeIdCombo.getStore().load(function() {
                     assigneeIdCombo.setValue(assignee);
@@ -209,7 +209,7 @@ Ext.define('Slate.assets.view.assets.details.Form', {
 
             ownerClass = me.getModelFromValue(owner.Class, true);
             owner = ownerClass.create(owner);
-            
+
             //set owner class combo first. (note: changing owner class will reset owner id)
             ownerCombo.setValue(me.getRootModelFromValue(asset.get('OwnerClass')));
 
@@ -308,7 +308,6 @@ Ext.define('Slate.assets.view.assets.details.Form', {
             displayField = me.getDisplayFieldFromValue(value),
             comboValue = idCombo.getValue(),
             _onLoadComplete = function(x,y,z) {
-//                debugger;
                 idCombo.enable();
                 if (focus) {
                     idCombo.focus(true, 100);
@@ -364,7 +363,6 @@ Ext.define('Slate.assets.view.assets.details.Form', {
         if (store) {
             return me.updateDependentIdCombo(combo, idCombo, store, newValue, oldValue ? true : false);
         } else {
-//            debugger;
             return idCombo.disable();
         }
     },
@@ -407,7 +405,6 @@ Ext.define('Slate.assets.view.assets.details.Form', {
 
             return me['get'+store+'Store']();
         } else {
-//            debugger;
             return null;
         }
     },
