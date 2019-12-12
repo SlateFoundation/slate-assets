@@ -2,15 +2,18 @@
 package = "holo/lens-sencha-package"
 
 [hololens.sencha]
+workspace = "sencha-workspace"
 pkg = "slate-assets"
 
 [hololens.input]
-root = "sencha-workspace"
 files = [
-    "packages/slate-assets/**",
-    "packages/jarvus-ext-lightbox/**",
-    "ext/**",
-    "workspace.json",
+    "sencha-workspace/packages/slate-assets/**",
+    "sencha-workspace/packages/jarvus-lightbox/**",
+    "sencha-workspace/packages/jarvus-ext-searchfield/**",
+    "sencha-workspace/ext/**",
+    "sencha-workspace/workspace.json",
+    "site-root/sass/**/_variables.scss",
+    "site-root/sass/**/_variables-*.scss"
 ]
 
 [hololens.output]

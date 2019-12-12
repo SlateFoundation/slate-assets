@@ -21,6 +21,10 @@
             "namespace": "Slate.assets",
             "etc": [
                 "${package.dir}/sass/etc/all.scss"
+            ],
+            "var": [
+                "${package.dir}/sass/var",
+                "${workspace.dir}/../site-root/sass/_variables-all.scss"
             ]
         },
         "compressor": {
